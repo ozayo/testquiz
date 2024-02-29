@@ -36,26 +36,25 @@ export default function Admin() {
         try {
             const response = await fetch('/api/questions', requestOptions);
             if (response.ok) {
-                // Yeni soru oluşturulduktan sonra admin panelinde kalmaya devam et
                 setQuestion('');
                 setOptions(['', '', '']);
                 setCorrectOption('');
                 setGroup('');
-                fetchQuestions(); // Yeniden soruları yükle
+                fetchQuestions(); 
             } else {
-                alert('Soru oluşturulurken bir hata oluştu.');
+                alert('An error occurred while creating the question.');
             }
         } catch (error) {
-            console.error('Soru oluşturma hatası:', error);
+            console.error('Question creation error:', error);
         }
     };
 
     return (
         <div>
-            <h1>Admin Paneli</h1>
+            <h1>Admin Dashboard</h1>
             <input
                 type="text"
-                placeholder="Soru"
+                placeholder="Question.."
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
             />
@@ -63,7 +62,7 @@ export default function Admin() {
                 <input
                     key={index}
                     type="text"
-                    placeholder={`Seçenek ${index + 1}`}
+                    placeholder={`Answer ${index + 1}`}
                     value={option}
                     onChange={(e) => {
                         const newOptions = [...options];
@@ -73,24 +72,24 @@ export default function Admin() {
                 />
             ))}
             <select value={correctOption} onChange={(e) => setCorrectOption(e.target.value)}>
-                <option value="">Doğru Seçeneği Seçin</option>
+                <option value="">Choose the Correct Option</option>
                 {options.map((option, index) => (
                     <option key={index} value={option}>{option}</option>
                 ))}
             </select>
             <input
                 type="text"
-                placeholder="Soru Grubu"
+                placeholder="Question Group"
                 value={group}
                 onChange={(e) => setGroup(e.target.value)}
             />
-            <button onClick={handleCreateQuestion}>Soru Oluştur</button>
+            <button onClick={handleCreateQuestion}>Create Question</button>
             <ul>
                 {questions.map(q => (
                     <li key={q.id}>{q.question}</li>
                 ))}
             </ul>
-            <button onClick={() => router.push('/')}>Ana Sayfaya Dön</button>
+            <button onClick={() => router.push('/')}>Return to Home Page</button>
         </div>
     );
 }

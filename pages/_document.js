@@ -5,8 +5,10 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <Main />
-        <NextScript />
+        <div className="container mx-auto max-w-5xl px-5">
+          <Main />
+          <NextScript />
+        </div>
       </body>
     </Html>
   );
